@@ -287,7 +287,6 @@ document.querySelectorAll('.booth,.ecap,.wbooth').forEach(el=>{
     setTimeout(()=>{tip.style.display='none';tip.style.transform='';},1600);
   });
 });
-renderList();
 const bought=new Set(JSON.parse(localStorage.getItem('bought')||'[]'));
 function toggleBought(id){bought.has(id)?bought.delete(id):bought.add(id);localStorage.setItem('bought',JSON.stringify([...bought]));renderList();}
 const ORDER=['キ49','キ50','キ51','キ52','キ53','キ54','キ55','キ56','キ48','キ47','キ46','キ45','キ44','キ43','キ42','キ57','キ58','キ59','キ60','キ61','キ62','キ63','キ64','キ41','キ40','キ39','キ38','キ37','キ36','キ35','キ34','キ33','ア1'];
@@ -333,6 +332,7 @@ function renderList(){
     </div>`;
   }).join('');
 }
+renderList();
 </script>
 </body>
 </html>
