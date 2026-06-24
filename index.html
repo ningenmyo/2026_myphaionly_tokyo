@@ -261,7 +261,7 @@ const PRESET={
   ]}
 };
 const bdata={};
-const checked=new Set();
+const checked=new Set(JSON.parse(localStorage.getItem('checked')||'[]'));
 function getType(k){
   if(k.startsWith('ア')) return 'wall';
   if(k==='キ49'||k==='キ33') return 'end';
@@ -271,8 +271,10 @@ document.querySelectorAll('.booth,.ecap,.wbooth').forEach(el=>{
   const k=el.dataset.k;
   if(PRESET[k]) bdata[k]={...PRESET[k]};
   else if(!bdata[k]) bdata[k]={name:'(미입력)',nickname:'',account:'',accountUrl:'',price:'',memo:'',items:[]};
+  if(checked.has(k)) el.classList.add('on');
   el.addEventListener('click',()=>{
     if(checked.has(k)) checked.delete(k); else checked.add(k);
+    localStorage.setItem('checked',JSON.stringify([...checked]));
     el.classList.toggle('on',checked.has(k));
     renderList();
     const d=bdata[k];
@@ -285,9 +287,10 @@ document.querySelectorAll('.booth,.ecap,.wbooth').forEach(el=>{
     setTimeout(()=>{tip.style.display='none';tip.style.transform='';},1600);
   });
 });
-const bought=new Set();
-function toggleBought(id){bought.has(id)?bought.delete(id):bought.add(id);renderList();}
-const ORDER=['キ49','キ50','キ51','キ52','キ53','キ54','キ55','キ56','キ48','キ47','キ46','キ45','キ44','キ43','キ42','キ57','キ58','キ59','キ60','キ61','キ62','キ63','キ64','キ41','キ40','キ39','キ38','キ37','キ36','キ35','キ34','キ33','ア1'];['キ49','キ50','キ51','キ52','キ53','キ54','キ55','キ56','キ48','キ47','キ46','キ45','キ44','キ43','キ42','キ57','キ58','キ59','キ60','キ61','キ62','キ63','キ64','キ41','キ40','キ39','キ38','キ37','キ36','キ35','キ34','キ33','ア1'];
+renderList();
+const bought=new Set(JSON.parse(localStorage.getItem('bought')||'[]'));
+function toggleBought(id){bought.has(id)?bought.delete(id):bought.add(id);localStorage.setItem('bought',JSON.stringify([...bought]));renderList();}
+const ORDER=['キ49','キ50','キ51','キ52','キ53','キ54','キ55','キ56','キ48','キ47','キ46','キ45','キ44','キ43','キ42','キ57','キ58','キ59','キ60','キ61','キ62','キ63','キ64','キ41','キ40','キ39','キ38','キ37','キ36','キ35','キ34','キ33','ア1'];
 function itemTags(it){
   let t='';
   if(it.r18) t+='<span class="item-r18">R18</span>';
