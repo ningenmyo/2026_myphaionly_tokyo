@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>星に願いを2026 キ블록 체크맵</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f5f7;color:#1d1d1f;font-size:14px}
+h1{font-size:15px;font-weight:600;padding:12px 14px 4px;color:#1d1d1f}
+.sub{font-size:11px;color:#86868b;padding:0 14px 10px}
+.legend{display:flex;gap:10px;padding:0 14px 10px;flex-wrap:wrap;font-size:11px;color:#86868b}
+.lb{display:inline-block;width:12px;height:9px;border-radius:2px;vertical-align:middle;margin-right:2px}
+.map-area{width:100%;overflow-x:auto;background:#fff;border-top:0.5px solid #d2d2d7;border-bottom:0.5px solid #d2d2d7}
+svg#ms{display:block;min-width:500px;width:100%;height:auto}
+.tip{position:fixed;background:#fff;border:0.5px solid #d2d2d7;border-radius:10px;padding:8px 11px;font-size:12px;pointer-events:none;display:none;z-index:9999;max-width:200px;box-shadow:0 4px 16px rgba(0,0,0,0.12)}
+.tip-n{font-size:11px;color:#86868b}
+.tip-nm{font-weight:600;color:#1d1d1f;line-height:1.35;margin-top:2px}
+.tip-h{font-size:10px;color:#007aff;margin-top:3px}
+.panel{padding:12px 14px 40px}
+.ph{display:flex;align-items:center;gap:6px;margin-bottom:10px}
+.ph h2{font-size:14px;font-weight:600;color:#1d1d1f}
+.pcnt{font-size:12px;color:#86868b}
+.clist{display:flex;flex-direction:column;gap:10px}
+.ci{background:#fff;border-radius:12px;padding:11px 13px;box-shadow:0 1px 3px rgba(0,0,0,0.08)}
+.ci.ki{border-left:3px solid #007aff}
+.ci.end{border-left:3px solid #ff9500}
+.ci.wall{border-left:3px solid #34c759}
+.ci-top{display:flex;gap:5px;align-items:flex-start;margin-bottom:8px;flex-wrap:wrap}
+.ci-num{font-size:12px;font-weight:600;padding:2px 6px;border-radius:5px;white-space:nowrap}
+.ci.ki .ci-num{color:#007aff;background:#e8f0ff}
+.ci.end .ci-num{color:#ff9500;background:#fff3e0}
+.ci.wall .ci-num{color:#34c759;background:#e8f8ed}
+.ci-nm{font-size:14px;font-weight:600;color:#1d1d1f}
+.ci-nick{font-size:11px;color:#86868b;margin-top:1px}
+.ci-acct{font-size:11px;color:#007aff;text-decoration:none;display:inline-block;margin-right:4px}
+.fields{display:flex;flex-direction:column;gap:5px;margin-bottom:6px}
+.frow{display:flex;align-items:center;gap:8px}
+.frow label{font-size:11px;color:#86868b;min-width:40px}
+.frow input{flex:1;font-size:13px;padding:5px 8px;border:0.5px solid #d2d2d7;border-radius:8px;background:#f5f5f7;color:#1d1d1f;-webkit-appearance:none}
+.frow input:focus{outline:none;border-color:#007aff;background:#fff}
+.items-block{margin-top:8px;padding-top:7px;border-top:0.5px solid #e5e5ea}
+.items-title{font-size:10px;color:#86868b;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.3px}
+.item-row{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;color:#1d1d1f;padding:3px 0;gap:6px}
+.item-row.bought .item-label{text-decoration:line-through;color:#86868b}
+.item-row.bought .item-price,.item-row.bought .item-tbd{color:#86868b}
+.item-check{width:16px;height:16px;flex-shrink:0;accent-color:#34c759;cursor:pointer;margin-top:1px}
+.item-label{flex:1;line-height:1.4}
+.item-price{font-size:12px;font-weight:600;color:#007aff;white-space:nowrap}
+.item-tbd{font-size:12px;color:#86868b;white-space:nowrap}
+.item-note{font-size:10px;color:#86868b;margin-bottom:4px;line-height:1.4}
+.item-r18{font-size:9px;color:#ff3b30;font-weight:600;margin-left:2px;background:#fff0ee;padding:1px 3px;border-radius:3px}
+.item-manga{font-size:9px;color:#34c759;font-weight:600;margin-left:2px;background:#edfaf1;padding:1px 3px;border-radius:3px}
+.item-novel{font-size:9px;color:#ff9500;font-weight:600;margin-left:2px;background:#fff8ee;padding:1px 3px;border-radius:3px}
+.item-free{font-size:9px;color:#86868b;font-weight:600;margin-left:2px;background:#f2f2f7;padding:1px 3px;border-radius:3px}
+.item-anth{font-size:9px;color:#007aff;font-weight:600;margin-left:2px;background:#e8f0ff;padding:1px 3px;border-radius:3px}
+.stamp-badge{font-size:10px;background:#fff3e0;color:#ff9500;border:0.5px solid #ffcc80;border-radius:5px;padding:1px 6px;margin-left:4px;font-weight:600}
+.info-only{font-size:11px;color:#86868b;font-style:italic;margin-top:4px}
+.empty{font-size:13px;color:#86868b;text-align:center;padding:20px 0}
+.booth,.ecap,.wbooth{cursor:pointer}
+.booth rect{fill:#f5f5f7;stroke:#d2d2d7;stroke-width:0.5}
+.booth:active rect{fill:#dbeafe;stroke:#93c5fd;stroke-width:1}
+.booth.on rect{fill:#bfdbfe;stroke:#2563eb;stroke-width:1.5}
+.ecap rect{fill:#f5f5f7;stroke:#ffcc80;stroke-width:0.8}
+.ecap:active rect{fill:#fef3c7;stroke:#f59e0b;stroke-width:1.2}
+.ecap.on rect{fill:#fde68a;stroke:#d97706;stroke-width:1.5}
+.wbooth rect{fill:#f5f5f7;stroke:#86efac;stroke-width:0.8}
+.wbooth:active rect{fill:#dcfce7;stroke:#4ade80;stroke-width:1.2}
+.wbooth.on rect{fill:#bbf7d0;stroke:#16a34a;stroke-width:1.5}
+.booth.filled rect{stroke:#93c5fd;stroke-width:1.2}
+.ecap.filled rect{stroke:#f59e0b;stroke-width:1.2}
+.wbooth.filled rect{stroke:#4ade80;stroke-width:1.2}
+.bt{font-size:6.5px;fill:#86868b;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;pointer-events:none}
+.btf{font-size:6.5px;fill:#2563eb;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;pointer-events:none}
+.btfw{font-size:6.5px;fill:#16a34a;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;pointer-events:none}
+.bte{font-size:6.5px;fill:#d97706;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;pointer-events:none}
+.bn{font-size:6px;fill:#86868b;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;pointer-events:none}
+.sl{font-size:12px;fill:#1d1d1f;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;font-weight:600;pointer-events:none}
+.sec{font-size:8px;fill:#86868b;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;pointer-events:none}
+.aisle{fill:#e5e5ea;stroke:#d2d2d7;stroke-width:0.5}
+.at{font-size:6.5px;fill:#86868b;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;pointer-events:none}
+.wline{fill:none;stroke:#d2d2d7;stroke-width:1;stroke-dasharray:3,2}
+.item-b{background:#f5f5f7 !important;}
+</style>
+</head>
+<body>
+<h1>⭐ 星に願いを2026 Day1</h1>
+<p class="sub">西1ホール キ블록 (33~64) + 벽부스 ア — 6/28 東京ビッグサイト</p>
+<div class="legend">
+  <span><span class="lb" style="background:#bfdbfe;border:1px solid #2563eb"></span>キ 일반</span>
+  <span><span class="lb" style="background:#fde68a;border:1px solid #d97706"></span>엔드캡 33·49</span>
+  <span><span class="lb" style="background:#bbf7d0;border:1px solid #16a34a"></span>벽부스 ア</span>
+  <span style="color:#86868b">★정보있음 / ○없음</span>
+</div>
+<div class="map-area">
+<svg id="ms" viewBox="0 0 760 185" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="760" height="185" fill="#fff"/>
+<rect x="314" y="0" width="40" height="185" class="aisle"/>
+<text x="334" y="92" class="at" transform="rotate(-90,334,92)">宅急便・引渡場所</text>
+<text x="334" y="10" class="at">西1ホール　キ블록 (33~64 + ア)</text>
+<text x="12" y="76" class="sl">キ</text>
+<text x="708" y="76" class="sl">ク</text>
+<text x="160" y="22" class="sec">← 윗줄 キ (좌) →</text>
+<text x="475" y="22" class="sec">← 윗줄 キ (우) →</text>
+<!-- 윗줄 좌 -->
+<g class="ecap filled" data-k="キ49"><rect x="30" y="30" width="18" height="42" rx="1"/><text x="39" y="47" class="bn">49</text><text x="39" y="59" class="bte">★</text></g>
+<g class="booth" data-k="キ50"><rect x="50" y="30" width="27" height="20" rx="1"/><text x="63" y="37" class="bn">50</text><text x="63" y="45" class="bt">○</text></g>
+<g class="booth" data-k="キ51"><rect x="79" y="30" width="27" height="20" rx="1"/><text x="92" y="37" class="bn">51</text><text x="92" y="45" class="bt">○</text></g>
+<g class="booth" data-k="キ52"><rect x="108" y="30" width="27" height="20" rx="1"/><text x="121" y="37" class="bn">52</text><text x="121" y="45" class="bt">○</text></g>
+<g class="booth" data-k="キ53"><rect x="137" y="30" width="27" height="20" rx="1"/><text x="150" y="37" class="bn">53</text><text x="150" y="45" class="bt">○</text></g>
+<g class="booth" data-k="キ54"><rect x="166" y="30" width="27" height="20" rx="1"/><text x="179" y="37" class="bn">54</text><text x="179" y="45" class="bt">○</text></g>
+<g class="booth" data-k="キ55"><rect x="195" y="30" width="27" height="20" rx="1"/><text x="208" y="37" class="bn">55</text><text x="208" y="45" class="bt">○</text></g>
+<g class="booth" data-k="キ56"><rect x="224" y="30" width="27" height="20" rx="1"/><text x="237" y="37" class="bn">56</text><text x="237" y="45" class="bt">○</text></g>
+<g class="booth filled" data-k="キ48"><rect x="50" y="52" width="27" height="20" rx="1"/><text x="63" y="59" class="bn">48</text><text x="63" y="67" class="btf">★</text></g>
+<g class="booth filled" data-k="キ47"><rect x="79" y="52" width="27" height="20" rx="1"/><text x="92" y="59" class="bn">47</text><text x="92" y="67" class="btf">★</text></g>
+<g class="booth filled" data-k="キ46"><rect x="108" y="52" width="27" height="20" rx="1"/><text x="121" y="59" class="bn">46</text><text x="121" y="67" class="btf">★</text></g>
+<g class="booth filled" data-k="キ45"><rect x="137" y="52" width="27" height="20" rx="1"/><text x="150" y="59" class="bn">45</text><text x="150" y="67" class="btf">★</text></g>
+<g class="booth filled" data-k="キ44"><rect x="166" y="52" width="27" height="20" rx="1"/><text x="179" y="59" class="bn">44</text><text x="179" y="67" class="btf">★</text></g>
+<g class="booth filled" data-k="キ43"><rect x="195" y="52" width="27" height="20" rx="1"/><text x="208" y="59" class="bn">43</text><text x="208" y="67" class="btf">★</text></g>
+<g class="booth filled" data-k="キ42"><rect x="224" y="52" width="27" height="20" rx="1"/><text x="237" y="59" class="bn">42</text><text x="237" y="67" class="btf">★</text></g>
+<!-- 윗줄 우 -->
+<g class="ecap filled" data-k="キ33"><rect x="588" y="30" width="18" height="42" rx="1"/><text x="597" y="47" class="bn">33</text><text x="597" y="59" class="bte">★</text></g>
+<g class="booth" data-k="キ57"><rect x="356" y="30" width="27" height="20" rx="1"/><text x="369" y="37" class="bn">57</text><text x="369" y="45" class="bt">○</text></g>
+<g class="booth" data-k="キ58"><rect x="385" y="30" width="27" height="20" rx="1"/><text x="398" y="37" class="bn">58</text><text x="398" y="45" class="bt">○</text></g>
+<g class="booth" data-k="キ59"><rect x="414" y="30" width="27" height="20" rx="1"/><text x="427" y="37" class="bn">59</text><text x="427" y="45" class="bt">○</text></g>
+<g class="booth" data-k="キ60"><rect x="443" y="30" width="27" height="20" rx="1"/><text x="456" y="37" class="bn">60</text><text x="456" y="45" class="bt">○</text></g>
+<g class="booth" data-k="キ61"><rect x="472" y="30" width="27" height="20" rx="1"/><text x="485" y="37" class="bn">61</text><text x="485" y="45" class="bt">○</text></g>
+<g class="booth" data-k="キ62"><rect x="501" y="30" width="27" height="20" rx="1"/><text x="514" y="37" class="bn">62</text><text x="514" y="45" class="bt">○</text></g>
+<g class="booth" data-k="キ63"><rect x="530" y="30" width="27" height="20" rx="1"/><text x="543" y="37" class="bn">63</text><text x="543" y="45" class="bt">○</text></g>
+<g class="booth" data-k="キ64"><rect x="559" y="30" width="27" height="20" rx="1"/><text x="572" y="37" class="bn">64</text><text x="572" y="45" class="bt">○</text></g>
+<g class="booth filled" data-k="キ41"><rect x="356" y="52" width="27" height="20" rx="1"/><text x="369" y="59" class="bn">41</text><text x="369" y="67" class="btf">★</text></g>
+<g class="booth filled" data-k="キ40"><rect x="385" y="52" width="27" height="20" rx="1"/><text x="398" y="59" class="bn">40</text><text x="398" y="67" class="btf">★</text></g>
+<g class="booth filled" data-k="キ39"><rect x="414" y="52" width="27" height="20" rx="1"/><text x="427" y="59" class="bn">39</text><text x="427" y="67" class="btf">★</text></g>
+<g class="booth filled" data-k="キ38"><rect x="443" y="52" width="27" height="20" rx="1"/><text x="456" y="59" class="bn">38</text><text x="456" y="67" class="btf">★</text></g>
+<g class="booth filled" data-k="キ37"><rect x="472" y="52" width="27" height="20" rx="1"/><text x="485" y="59" class="bn">37</text><text x="485" y="67" class="btf">★</text></g>
+<g class="booth filled" data-k="キ36"><rect x="501" y="52" width="27" height="20" rx="1"/><text x="514" y="59" class="bn">36</text><text x="514" y="67" class="btf">★</text></g>
+<g class="booth filled" data-k="キ35"><rect x="530" y="52" width="27" height="20" rx="1"/><text x="543" y="59" class="bn">35</text><text x="543" y="67" class="btf">★</text></g>
+<g class="booth filled" data-k="キ34"><rect x="559" y="52" width="27" height="20" rx="1"/><text x="572" y="59" class="bn">34</text><text x="572" y="67" class="btf">★</text></g>
+<!-- 벽부스 -->
+<line x1="628" y1="28" x2="628" y2="170" class="wline"/>
+<text x="646" y="20" class="sec">벽부스 ア</text>
+<g class="wbooth filled" data-k="ア1"><rect x="616" y="28" width="40" height="34" rx="1"/><text x="636" y="41" class="bn">ア1</text><text x="636" y="53" class="btfw">★</text></g>
+
+</svg>
+</div>
+<div class="panel">
+  <div class="ph"><h2>체크한 부스</h2><span class="pcnt" id="pcnt"></span></div>
+  <div class="clist" id="clist"><p class="empty">부스를 탭해서 체크해봐~</p></div>
+</div>
+<div class="tip" id="tip">
+  <div class="tip-n" id="tn"></div>
+  <div class="tip-nm" id="tnm"></div>
+  <div class="tip-h" id="th"></div>
+</div>
+<script>
+const ACCOUNTS={
+  'キ37':['https://x.com/nashihsr','@nashihsr','https://x.com/hncr_l','@hncr_l'],
+  'キ36':['https://x.com/nmmm_kani','@nmmm_kani','https://x.com/nono_nnx','@nono_nnx'],
+  'キ38':['https://x.com/sibuosab','@sibuosab','https://x.com/N734i','@N734i'],
+  'キ41':['https://x.com/sa8_ta','@sa8_ta','https://x.com/urashima_hy','@urashima_hy'],
+  'キ42':['https://x.com/yuyuyu_str','@yuyuyu_str','https://x.com/8f9de4','@8f9de4'],
+  'キ47':['https://x.com/ailove676','@ailove676','https://x.com/aimo_335','@aimo_335'],
+  'キ39':['https://x.com/mf_OvO','@mf_OvO','https://x.com/KN4255','@KN4255'],
+  'ア1':['https://x.com/ham_mmx','@ham_mmx','https://x.com/sansuke801','@sansuke801'],
+  'キ44':['https://x.com/hoshi_0518','@hoshi_0518','https://x.com/shinkun009','@shinkun009'],
+};
+const PRESET={
+  'キ49':{name:'棗の実',nickname:'ナチュメ（なつみかん）',account:'@str_ntm',accountUrl:'https://x.com/str_ntm',price:'1000엔',memo:'キ49ab',stamp:true,items:[
+    {label:'모스파이 소설',price:'1000엔',note:'본문160p — キ49a',novel:true},
+    {label:'핑크 포스카 (노벨티)',price:'무료',note:'キ49a',free:true},
+    {label:'미니마그넷 (노벨티)',price:'무료',note:'キ49a',free:true}
+  ]},
+  'キ48':{name:'いとしき / ツユマチ',nickname:'wanaka / よひら',account:'@wanaka_itosiki / @yohiraori',accountUrl:'',price:'1500~2000엔',memo:'キ48a·b',items:[
+    {label:'「ニカドリーの眷属にローションガーゼされるファイノンとモスファイ」',price:'1500엔',note:'300P/글 — wanaka / キ48a',novel:true},
+    {label:'「いつかあなたの痛みを知る」',price:'2000엔',note:'문고(A6)/커버·책갈피 포함/288P/R18/글 — よひら / キ48b',r18:true,novel:true}
+  ]},
+  'キ47':{name:'あいいろ部屋 / あいものや',nickname:'あい / あいも',account:'@ailove676 / @aimo_335',accountUrl:'',price:'700엔~',memo:'キ47a·b',items:[
+    {label:'「たとえ世界が違っても」',price:'700엔',note:'문고본/176P/R18 — あい / キ47a',r18:true,novel:true},
+    {label:'あいも 판매물',price:'미정',note:'글회지 — @aimo_335 / キ47b',novel:true}
+  ]},
+  'キ46':{name:'私的見解 / 矛盾戯咲',nickname:'守屋 / SAHINA',account:'@SAHINAGentou',accountUrl:'https://x.com/SAHINAGentou',price:'700엔~',memo:'キ46a·b',items:[
+    {label:'「泡沫に溶けだす人魚の恋」외',price:'미정',note:'문고본/148P — 守屋(pixiv) / キ46a',novel:true},
+    {label:'글회지 2종',price:'700엔',note:'문고본/156P — SAHINA / キ46b',novel:true}
+  ]},
+  'キ45':{name:'Lune et toi / Good evening',nickname:'p / ましま',account:'',accountUrl:'',price:'미정',memo:'キ45a·b',items:[
+    {label:'p 판매물',price:'미정',note:'인포 미공개 / Lune et toi / キ45a'},
+    {label:'ましま 판매물',price:'미정',note:'인포 미공개 / ぐっどいぶにんぐ / キ45b'}
+  ]},
+  'キ44':{name:'星の在処 / ごまぜんまい',nickname:'保志 / 慎くん',account:'@hoshi_0518 / @shinkun009',accountUrl:'',price:'400~1300엔',memo:'キ44a·b',items:[
+    {label:'신간세트 「Luminous Epic2」+ 박押し카드',price:'500엔',note:'모스파이/B5/18P/전연령/풀컬러 — 保志 / キ44a',manga:true},
+    {label:'모스파이 빅아크스타 (~20cm)',price:'1300엔',note:'1인 1개 한정 — 保志 / キ44a'},
+    {label:'박押し티켓카드 (노벨티)',price:'무료',note:'여분 무료배포 — 保志 / キ44a',free:true},
+    {label:'신간 「Relive」',price:'500엔',note:'전연령/문고/82P — ごまぜんまい / キ44b',novel:true},
+    {label:'기간행 「炉心溶融」',price:'1500엔',note:'전연령/문고/180P — ごまぜんまい / キ44b',novel:true},
+    {label:'もすふぁい 캔배지 44mm (단품)',price:'400엔',note:'ごまぜんまい / キ44b'},
+    {label:'もすふぁい 캔배지 세트',price:'700엔',note:'ごまぜんまい / キ44b'}
+  ]},
+  'キ43':{name:'睡眠餃子 / 残炎',nickname:'イヌイ / ごっつあんプリファイ',account:'@higoyama',accountUrl:'https://x.com/higoyama',price:'미정',memo:'キ43a·b',items:[
+    {label:'睡眠餃子 판매물',price:'미정',note:'인포 미공개 / イヌイ / キ43a'},
+    {label:'残炎 판매물',price:'미정',note:'인포 미공개 / ごっつあんプリファイ(@higoyama) / キ43b'}
+  ]},
+  'キ42':{name:'toY＊Box / おやすみ',nickname:'ゆの / りー',account:'@yuyuyu_str / @8f9de4',accountUrl:'',price:'미정',memo:'キ42a·b',items:[
+    {label:'ゆの 판매물',price:'미정',note:'인포 미공개 / キ42a'},
+    {label:'「まだ名前のないままで」',price:'미정',note:'R18/만화 — りー / キ42b',r18:true,manga:true}
+  ]},
+  'キ41':{name:'ゆうやけの庭 / にっちもさっちも',nickname:'ひさた / うらしま',account:'@sa8_ta / @urashima_hy',accountUrl:'',price:'300~400엔',memo:'キ41a·b',items:[
+    {label:'신간 「よっぱらいにちゅうい！」',price:'400엔',note:'A5/R18/24P/만화 — ひさた / キ41a',r18:true,manga:true},
+    {label:'기간행 「Honest Wings」',price:'400엔',note:'A5/R18/28P/만화 — ひさた / キ41a',r18:true,manga:true},
+    {label:'けもみみ모스파이 미니아크릴스탠드 (~4.5cm)',price:'300엔',note:'シール 포함 — ひさた / キ41a'},
+    {label:'노벨티: ハニヤシアンブレラマーカー',price:'무료',note:'소진시 종료 — キ41a',free:true},
+    {label:'미니카드&페이퍼',price:'무료',note:'TAKE FREE — キ41a',free:true},
+    {label:'うらしま 판매물',price:'미정',note:'인포 미공개 — うらしま / キ41b'}
+  ]},
+  'キ40':{name:'わにも / はらぺこタイム',nickname:'ワ / 九里',account:'@crcrc1950',accountUrl:'https://x.com/crcrc1950',price:'미정',memo:'キ40a·b',items:[
+    {label:'ワ 판매물',price:'미정',note:'인포 미공개 / わにも / キ40a'},
+    {label:'「Grrr panic」',price:'미정',note:'Mydei×Phainon/R18/만화 — 九里 / キ40b',r18:true,manga:true}
+  ]},
+  'キ39':{name:'もふもふたまご / 蟹納税所',nickname:'ⓅⓄⓀⒶ星願 / KN',account:'@mf_OvO / @KN4255',accountUrl:'',price:'500엔',memo:'キ39a·b',items:[
+    {label:'「転生と日常」',price:'500엔',note:'A5/44P/R18/만화 — ⓅⓄⓀⒶ星願 / キ39a',r18:true,manga:true},
+    {label:'箔押しカード (노벨티)',price:'무료',note:'신간 구매 시 증정 — キ39a',free:true},
+    {label:'「甘美は待て熟せ」',price:'500엔',note:'B5/36P/R18/만화 — KN / キ39b',r18:true,manga:true}
+  ]},
+  'キ38':{name:'ここを流刑地とする / 対象選別',nickname:'シブオ / N7',account:'@sibuosab / @N734i',accountUrl:'',price:'500엔~',memo:'キ38a·b',items:[
+    {label:'シブオ 판매물',price:'500엔',note:'만화 — @sibuosab / キ38a',manga:true},
+    {label:'N7 판매물',price:'500엔',note:'만화 — N7 / キ38b',manga:true}
+  ]},
+  'キ37':{name:'hncr＋0 / ぺあはうす。',nickname:'Ray / 梨',account:'@nashihsr / @hncr_l',accountUrl:'',price:'400~600엔',memo:'キ37a·b',items:[
+    {label:'「アイオライトの残滓」',price:'600엔',note:'A5/32p/전연령/만화 — Ray / キ37a',manga:true},
+    {label:'「英雄といっしょ」',price:'400엔',note:'A5/16p/전연령/만화 — Ray / キ37a',manga:true},
+    {label:'「ご都合奇物のせいで彼が僕を口説いてくる件について」',price:'500엔',note:'A5/56P/R18/만화 — 梨 / キ37b',r18:true,manga:true}
+  ]},
+  'キ36':{name:'野菜統営処 / からめろ',nickname:'じゃがいも / からめろ',account:'@nmmm_kani / @nono_nnx',accountUrl:'',price:'300~1600엔',memo:'キ36a·b',items:[
+    {label:'팬진 「Springs [in the air]」 WEB재록+α',price:'900엔',note:'A5/58p/R18/만화|포스트카드포함 — じゃがいも / キ36a',r18:true,manga:true},
+    {label:'Flower Bouquet 배지 2개 세트',price:'600엔',note:'じゃがいも / キ36a'},
+    {label:'VIRTUAL DESKTOP PET 아크릴스탠드 3개 세트',price:'1200엔',note:'じゃがいも / キ36a'},
+    {label:'中華飯店 아크릴스탠드 2개 세트',price:'1600엔',note:'じゃがいも / キ36a'},
+    {label:'Smartphone Sticker Set 8장 세트',price:'300엔',note:'じゃがいも / キ36a'},
+    {label:'신간 「僕だって本当は！」',price:'500엔',note:'A5/풀컬러/16P/전연령/여체화/만화 — からめろ / キ36b',manga:true},
+    {label:'미니포토프린트 (노벨티)',price:'무료',note:'신간 구매 시 1장 — からめろ / キ36b',free:true},
+    {label:'코피본 「ただにょたモファで見たいお顔を描いただけ」',price:'무료',note:'만화 — からめろ / キ36b',manga:true,free:true}
+  ]},
+  'キ35':{name:'pelota / Ariel',nickname:'nb / 462',account:'@462_doll',accountUrl:'https://x.com/462_doll',price:'400엔',memo:'キ35a·b',items:[
+    {label:'nb 판매물',price:'미정',note:'인포 미공개 / pelota / キ35a'},
+    {label:'「君には秘密の、僕たちのこと」',price:'400엔',note:'A5/36P/전연령/만화 ※패러디·다중인격 — 462 / キ35b',manga:true}
+  ]},
+  'キ34':{name:'在 / 青い霧',nickname:'在 / あおい / okano(위탁)',account:'@ari_eos / @AoiAkira0705 / @okanon496',accountUrl:'',price:'500~1500엔',memo:'キ34a·b',items:[
+    {label:'在 판매물',price:'미정',note:'인포 미공개 / キ34a'},
+    {label:'신간 「BLUE STAR」',price:'1000엔',note:'B5/풀컬러/22p/전연령/만화 — あおい / キ34b',manga:true},
+    {label:'후박절 포스카 (노벨티)',price:'무료',note:'신간 1권 구매 시 — キ34b',free:true},
+    {label:'아크릴스탠드 (~14cm)',price:'1500엔',note:'1인 1개 한정 — キ34b'},
+    {label:'모스파이 팝업카드 조립키트 (위탁)',price:'500엔',note:'丘乃上(okano) 위탁 — キ34b'}
+  ]},
+  'キ33':{name:'スマイル100円',nickname:'なすこ',account:'@gnsn_nasu',accountUrl:'https://x.com/gnsn_nasu',price:'1500엔',memo:'キ33ab',items:[
+    {label:'앤솔로지 「Wedding & First Night」',price:'1500엔',note:'A5/126p/R18/모스파이 온리 앤솔 — キ33ab',r18:true,manga:true,novel:true,anth:true},
+    {label:'초대장풍 포스카 (노벨티)',price:'무료',note:'회장·통판 공통 — キ33ab',free:true},
+    {label:'일러스트 스티커 (노벨티)',price:'무료',note:'회장 한정 — キ33ab',free:true}
+  ]},
+  'ア1':{name:'mpc / ZERO生',nickname:'ﾒﾋﾟ / 三助',account:'@ham_mmx / @sansuke801',accountUrl:'',price:'500~700엔',memo:'ア01a·b',items:[
+    {label:'「中に出してよ」',price:'500엔',note:'A5/34P/R18/만화 — ﾒﾋﾟ(@ham_mmx) / ア01a',r18:true,manga:true},
+    {label:'「初エッチ前に頑張りすぎてやらかすノン」',price:'700엔',note:'B5/54P/R18/만화 — 三助(@sansuke801) / ア01b',r18:true,manga:true}
+  ]}
+};
+const bdata={};
+const checked=new Set();
+function getType(k){
+  if(k.startsWith('ア')) return 'wall';
+  if(k==='キ49'||k==='キ33') return 'end';
+  return 'ki';
+}
+document.querySelectorAll('.booth,.ecap,.wbooth').forEach(el=>{
+  const k=el.dataset.k;
+  if(PRESET[k]) bdata[k]={...PRESET[k]};
+  else if(!bdata[k]) bdata[k]={name:'(미입력)',nickname:'',account:'',accountUrl:'',price:'',memo:'',items:[]};
+  el.addEventListener('click',()=>{
+    if(checked.has(k)) checked.delete(k); else checked.add(k);
+    el.classList.toggle('on',checked.has(k));
+    renderList();
+    const d=bdata[k];
+    const tip=document.getElementById('tip');
+    document.getElementById('tn').textContent=k+(d.memo&&d.memo!==k?' ('+d.memo+')':'');
+    document.getElementById('tnm').textContent=d.nickname||d.name;
+    document.getElementById('th').textContent=checked.has(k)?'✓ 체크됨':'탭으로 체크';
+    tip.style.display='block';
+    tip.style.left='50%';tip.style.transform='translateX(-50%)';tip.style.top='80px';
+    setTimeout(()=>{tip.style.display='none';tip.style.transform='';},1600);
+  });
+});
+const bought=new Set();
+function toggleBought(id){bought.has(id)?bought.delete(id):bought.add(id);renderList();}
+const ORDER=['キ49','キ50','キ51','キ52','キ53','キ54','キ55','キ56','キ48','キ47','キ46','キ45','キ44','キ43','キ42','キ57','キ58','キ59','キ60','キ61','キ62','キ63','キ64','キ41','キ40','キ39','キ38','キ37','キ36','キ35','キ34','キ33','ア1'];['キ49','キ50','キ51','キ52','キ53','キ54','キ55','キ56','キ48','キ47','キ46','キ45','キ44','キ43','キ42','キ57','キ58','キ59','キ60','キ61','キ62','キ63','キ64','キ41','キ40','キ39','キ38','キ37','キ36','キ35','キ34','キ33','ア1'];
+function itemTags(it){
+  let t='';
+  if(it.r18) t+='<span class="item-r18">R18</span>';
+  if(it.anth) t+='<span class="item-anth">앤솔</span>';
+  if(it.manga) t+='<span class="item-manga">만화</span>';
+  if(it.novel) t+='<span class="item-novel">글</span>';
+  if(it.free) t+='<span class="item-free">무료</span>';
+  return t;
+}
+function makeAcctHtml(k,d){
+  const m=ACCOUNTS[k];
+  if(m){let h='';for(let i=0;i<m.length;i+=2)h+=`<a class="ci-acct" href="${m[i]}">${m[i+1]}</a>`;return h;}
+  if(k==='キ48') return `<a class="ci-acct" href="https://x.com/wanaka_itosiki">@wanaka_itosiki</a><a class="ci-acct" href="https://x.com/yohiraori">@yohiraori</a>`;
+  if(k==='キ46') return `<a class="ci-acct" href="https://x.com/SAHINAGentou">@SAHINAGentou</a><a class="ci-acct" href="https://www.pixiv.net/users/6813000">pixiv(守屋)</a>`;
+  if(k==='キ34') return `<a class="ci-acct" href="https://x.com/ari_eos">@ari_eos</a><a class="ci-acct" href="https://x.com/AoiAkira0705">@AoiAkira0705</a><a class="ci-acct" href="https://x.com/okanon496">@okanon496</a>`;
+  if(d.accountUrl) return `<a class="ci-acct" href="${d.accountUrl}">${d.account}</a>`;
+  if(d.account) return `<span class="ci-acct">${d.account}</span>`;
+  return '';
+}
+function renderList(){
+  const cnt=checked.size;
+  document.getElementById('pcnt').textContent=cnt>0?`(${cnt}개)`:'';
+  const el=document.getElementById('clist');
+  if(!cnt){el.innerHTML='<p class="empty">부스를 탭해서 체크해봐~</p>';return;}
+  const sorted=[...checked].sort((a,b)=>(ORDER.indexOf(a)<0?999:ORDER.indexOf(a))-(ORDER.indexOf(b)<0?999:ORDER.indexOf(b)));
+  el.innerHTML=sorted.map(k=>{
+    const t=getType(k);const d=bdata[k];
+    const numLabel=k+(d.memo&&d.memo!==k?' ('+d.memo+')':'');
+    const stampHtml=d.stamp?'<span class="stamp-badge">스탬프랠리 본부</span>':'';
+    const nickHtml=d.nickname?`<div class="ci-nick">${d.nickname}</div>`:'';
+    const acctHtml=makeAcctHtml(k,d);
+    const infoOnly=(!d.items||!d.items.length)?'<p class="info-only">인포 미공개</p>':'';
+    const itemsHtml=d.items&&d.items.length?`<div class="items-block"><div class="items-title">판매물</div>${d.items.map((it,i)=>{const isB=it.note&&/[キア]\d+b/.test(it.note);const bid=k+'_'+i;const isBought=bought.has(bid);return`<div class="item-row${isB?' item-b':''}${isBought?' bought':''}"><input type="checkbox" class="item-check"${isBought?' checked':''} onchange="toggleBought('${bid}')"><span class="item-label">${it.label}${itemTags(it)}</span><span class="${it.price==='미정'?'item-tbd':'item-price'}">${it.price}</span></div>${it.note?`<div class="item-note${isB?' item-b':''}">${it.note}</div>`:''}`}).join('')}</div>`:'';
+    return `<div class="ci ${t}">
+      <div class="ci-top"><span class="ci-num">${numLabel}</span>${stampHtml}<div style="flex:1"><div class="ci-nm">${d.name}</div>${nickHtml}<div>${acctHtml}</div></div></div>
+      <div class="fields">
+        <div class="frow"><label>메모</label><input type="text" placeholder="메모" value="${d.memo||''}" oninput="bdata['${k}'].memo=this.value"></div>
+      </div>
+      ${infoOnly}${itemsHtml}
+    </div>`;
+  }).join('');
+}
+</script>
+</body>
+</html>
