@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>星に願いを2026 キ블록 체크맵</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -11,8 +11,8 @@ h1{font-size:15px;font-weight:600;padding:12px 14px 4px;color:#1d1d1f}
 .sub{font-size:11px;color:#86868b;padding:0 14px 10px}
 .legend{display:flex;gap:10px;padding:0 14px 10px;flex-wrap:wrap;font-size:11px;color:#86868b}
 .lb{display:inline-block;width:12px;height:9px;border-radius:2px;vertical-align:middle;margin-right:2px}
-.map-area{width:100%;overflow-x:auto;overflow-y:visible;background:#fff;border-top:0.5px solid #d2d2d7;border-bottom:0.5px solid #d2d2d7}
-svg#ms{display:block;min-width:1672px;width:1672px;height:auto}
+.map-area{width:100%;overflow-x:auto;background:#fff;border-top:0.5px solid #d2d2d7;border-bottom:0.5px solid #d2d2d7}
+svg#ms{display:block;min-width:500px;width:100%;height:auto}
 .tip{position:fixed;background:#fff;border:0.5px solid #d2d2d7;border-radius:10px;padding:8px 11px;font-size:12px;pointer-events:none;display:none;z-index:9999;max-width:200px;box-shadow:0 4px 16px rgba(0,0,0,0.12)}
 .tip-n{font-size:11px;color:#86868b}
 .tip-nm{font-weight:600;color:#1d1d1f;line-height:1.35;margin-top:2px}
@@ -70,15 +70,15 @@ svg#ms{display:block;min-width:1672px;width:1672px;height:auto}
 .booth.filled rect{stroke:#93c5fd;stroke-width:1.2}
 .ecap.filled rect{stroke:#f59e0b;stroke-width:1.2}
 .wbooth.filled rect{stroke:#4ade80;stroke-width:1.2}
-.bt{font-size:14.3px;fill:#86868b;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;pointer-events:none}
-.btf{font-size:14.3px;fill:#2563eb;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;pointer-events:none}
-.btfw{font-size:14.3px;fill:#16a34a;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;pointer-events:none}
-.bte{font-size:14.3px;fill:#d97706;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;pointer-events:none}
-.bn{font-size:13.2px;fill:#86868b;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;pointer-events:none}
-.sl{font-size:26.4px;fill:#1d1d1f;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;font-weight:600;pointer-events:none}
-.sec{font-size:17.6px;fill:#86868b;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;pointer-events:none}
+.bt{font-size:6.5px;fill:#86868b;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;pointer-events:none}
+.btf{font-size:6.5px;fill:#2563eb;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;pointer-events:none}
+.btfw{font-size:6.5px;fill:#16a34a;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;pointer-events:none}
+.bte{font-size:6.5px;fill:#d97706;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;pointer-events:none}
+.bn{font-size:6px;fill:#86868b;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;pointer-events:none}
+.sl{font-size:12px;fill:#1d1d1f;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;font-weight:600;pointer-events:none}
+.sec{font-size:8px;fill:#86868b;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;pointer-events:none}
 .aisle{fill:#e5e5ea;stroke:#d2d2d7;stroke-width:0.5}
-.at{font-size:14.3px;fill:#86868b;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;pointer-events:none}
+.at{font-size:6.5px;fill:#86868b;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;pointer-events:none}
 .wline{fill:none;stroke:#d2d2d7;stroke-width:1;stroke-dasharray:3,2}
 .item-b{background:#f5f5f7 !important;}
 </style>
@@ -92,59 +92,59 @@ svg#ms{display:block;min-width:1672px;width:1672px;height:auto}
   <span><span class="lb" style="background:#bbf7d0;border:1px solid #16a34a"></span>벽부스 ア</span>
   <span style="color:#86868b">★정보있음 / ○없음</span>
 </div>
-<div class="map-area">
-<svg id="ms" viewBox="0 0 1672 407" xmlns="http://www.w3.org/2000/svg">
-<rect x="0.0" y="0.0" width="3678.4" height="895.4" fill="#fff"/>
-<rect x="690.8" y="0.0" width="88.0" height="407.0" class="aisle"/>
-<text x="734.8" y="202.4" class="at" transform="rotate(-90,735,202)">宅急便・引渡場所</text>
-<text x="734.8" y="22.0" class="at">西1ホール　キ블록 (33~64 + ア)</text>
-<text x="26.4" y="167.2" class="sl">キ</text>
-<text x="1557.6" y="167.2" class="sl">ク</text>
-<text x="352.0" y="48.4" class="sec">← 윗줄 キ (좌) →</text>
-<text x="1045.0" y="48.4" class="sec">← 윗줄 キ (우) →</text>
-<!-- 윗줄 좌 -->
-<g class="ecap filled" data-k="キ49"><rect x="66.0" y="66.0" width="39.6" height="92.4" rx="2.2"/><text x="85.8" y="103.4" class="bn">49</text><text x="85.8" y="129.8" class="bte">★</text></g>
-<g class="booth" data-k="キ50"><rect x="110.0" y="66.0" width="59.4" height="44.0" rx="2.2"/><text x="138.6" y="81.4" class="bn">50</text><text x="138.6" y="99.0" class="bt">○</text></g>
-<g class="booth" data-k="キ51"><rect x="173.8" y="66.0" width="59.4" height="44.0" rx="2.2"/><text x="202.4" y="81.4" class="bn">51</text><text x="202.4" y="99.0" class="bt">○</text></g>
-<g class="booth" data-k="キ52"><rect x="237.6" y="66.0" width="59.4" height="44.0" rx="2.2"/><text x="266.2" y="81.4" class="bn">52</text><text x="266.2" y="99.0" class="bt">○</text></g>
-<g class="booth" data-k="キ53"><rect x="301.4" y="66.0" width="59.4" height="44.0" rx="2.2"/><text x="330.0" y="81.4" class="bn">53</text><text x="330.0" y="99.0" class="bt">○</text></g>
-<g class="booth" data-k="キ54"><rect x="365.2" y="66.0" width="59.4" height="44.0" rx="2.2"/><text x="393.8" y="81.4" class="bn">54</text><text x="393.8" y="99.0" class="bt">○</text></g>
-<g class="booth" data-k="キ55"><rect x="429.0" y="66.0" width="59.4" height="44.0" rx="2.2"/><text x="457.6" y="81.4" class="bn">55</text><text x="457.6" y="99.0" class="bt">○</text></g>
-<g class="booth" data-k="キ56"><rect x="492.8" y="66.0" width="59.4" height="44.0" rx="2.2"/><text x="521.4" y="81.4" class="bn">56</text><text x="521.4" y="99.0" class="bt">○</text></g>
-<g class="booth filled" data-k="キ48"><rect x="110.0" y="114.4" width="59.4" height="44.0" rx="2.2"/><text x="138.6" y="129.8" class="bn">48</text><text x="138.6" y="147.4" class="btf">★</text></g>
-<g class="booth filled" data-k="キ47"><rect x="173.8" y="114.4" width="59.4" height="44.0" rx="2.2"/><text x="202.4" y="129.8" class="bn">47</text><text x="202.4" y="147.4" class="btf">★</text></g>
-<g class="booth filled" data-k="キ46"><rect x="237.6" y="114.4" width="59.4" height="44.0" rx="2.2"/><text x="266.2" y="129.8" class="bn">46</text><text x="266.2" y="147.4" class="btf">★</text></g>
-<g class="booth filled" data-k="キ45"><rect x="301.4" y="114.4" width="59.4" height="44.0" rx="2.2"/><text x="330.0" y="129.8" class="bn">45</text><text x="330.0" y="147.4" class="btf">★</text></g>
-<g class="booth filled" data-k="キ44"><rect x="365.2" y="114.4" width="59.4" height="44.0" rx="2.2"/><text x="393.8" y="129.8" class="bn">44</text><text x="393.8" y="147.4" class="btf">★</text></g>
-<g class="booth filled" data-k="キ43"><rect x="429.0" y="114.4" width="59.4" height="44.0" rx="2.2"/><text x="457.6" y="129.8" class="bn">43</text><text x="457.6" y="147.4" class="btf">★</text></g>
-<g class="booth filled" data-k="キ42"><rect x="492.8" y="114.4" width="59.4" height="44.0" rx="2.2"/><text x="521.4" y="129.8" class="bn">42</text><text x="521.4" y="147.4" class="btf">★</text></g>
-<!-- 윗줄 우 -->
-<g class="ecap filled" data-k="キ33"><rect x="1293.6" y="66.0" width="39.6" height="92.4" rx="2.2"/><text x="1313.4" y="103.4" class="bn">33</text><text x="1313.4" y="129.8" class="bte">★</text></g>
-<g class="booth" data-k="キ57"><rect x="783.2" y="66.0" width="59.4" height="44.0" rx="2.2"/><text x="811.8" y="81.4" class="bn">57</text><text x="811.8" y="99.0" class="bt">○</text></g>
-<g class="booth" data-k="キ58"><rect x="847.0" y="66.0" width="59.4" height="44.0" rx="2.2"/><text x="875.6" y="81.4" class="bn">58</text><text x="875.6" y="99.0" class="bt">○</text></g>
-<g class="booth" data-k="キ59"><rect x="910.8" y="66.0" width="59.4" height="44.0" rx="2.2"/><text x="939.4" y="81.4" class="bn">59</text><text x="939.4" y="99.0" class="bt">○</text></g>
-<g class="booth" data-k="キ60"><rect x="974.6" y="66.0" width="59.4" height="44.0" rx="2.2"/><text x="1003.2" y="81.4" class="bn">60</text><text x="1003.2" y="99.0" class="bt">○</text></g>
-<g class="booth" data-k="キ61"><rect x="1038.4" y="66.0" width="59.4" height="44.0" rx="2.2"/><text x="1067.0" y="81.4" class="bn">61</text><text x="1067.0" y="99.0" class="bt">○</text></g>
-<g class="booth" data-k="キ62"><rect x="1102.2" y="66.0" width="59.4" height="44.0" rx="2.2"/><text x="1130.8" y="81.4" class="bn">62</text><text x="1130.8" y="99.0" class="bt">○</text></g>
-<g class="booth" data-k="キ63"><rect x="1166.0" y="66.0" width="59.4" height="44.0" rx="2.2"/><text x="1194.6" y="81.4" class="bn">63</text><text x="1194.6" y="99.0" class="bt">○</text></g>
-<g class="booth" data-k="キ64"><rect x="1229.8" y="66.0" width="59.4" height="44.0" rx="2.2"/><text x="1258.4" y="81.4" class="bn">64</text><text x="1258.4" y="99.0" class="bt">○</text></g>
-<g class="booth filled" data-k="キ41"><rect x="783.2" y="114.4" width="59.4" height="44.0" rx="2.2"/><text x="811.8" y="129.8" class="bn">41</text><text x="811.8" y="147.4" class="btf">★</text></g>
-<g class="booth filled" data-k="キ40"><rect x="847.0" y="114.4" width="59.4" height="44.0" rx="2.2"/><text x="875.6" y="129.8" class="bn">40</text><text x="875.6" y="147.4" class="btf">★</text></g>
-<g class="booth filled" data-k="キ39"><rect x="910.8" y="114.4" width="59.4" height="44.0" rx="2.2"/><text x="939.4" y="129.8" class="bn">39</text><text x="939.4" y="147.4" class="btf">★</text></g>
-<g class="booth filled" data-k="キ38"><rect x="974.6" y="114.4" width="59.4" height="44.0" rx="2.2"/><text x="1003.2" y="129.8" class="bn">38</text><text x="1003.2" y="147.4" class="btf">★</text></g>
-<g class="booth filled" data-k="キ37"><rect x="1038.4" y="114.4" width="59.4" height="44.0" rx="2.2"/><text x="1067.0" y="129.8" class="bn">37</text><text x="1067.0" y="147.4" class="btf">★</text></g>
-<g class="booth filled" data-k="キ36"><rect x="1102.2" y="114.4" width="59.4" height="44.0" rx="2.2"/><text x="1130.8" y="129.8" class="bn">36</text><text x="1130.8" y="147.4" class="btf">★</text></g>
-<g class="booth filled" data-k="キ35"><rect x="1166.0" y="114.4" width="59.4" height="44.0" rx="2.2"/><text x="1194.6" y="129.8" class="bn">35</text><text x="1194.6" y="147.4" class="btf">★</text></g>
-<g class="booth filled" data-k="キ34"><rect x="1229.8" y="114.4" width="59.4" height="44.0" rx="2.2"/><text x="1258.4" y="129.8" class="bn">34</text><text x="1258.4" y="147.4" class="btf">★</text></g>
-<!-- 벽부스 -->
-<line x1="1381.6" y1="61.6" x2="1381.6" y2="374.0" class="wline"/>
-<text x="1421.2" y="44.0" class="sec">벽부스 ア</text>
-<g class="wbooth filled" data-k="ア1"><rect x="1355.2" y="61.6" width="88.0" height="74.8" rx="2.2"/><text x="1399.2" y="90.2" class="bn">ア1</text><text x="1399.2" y="116.6" class="btfw">★</text></g>
-
-</svg>
+<div class="map-area" style="background:#f5f5f7">
+<p style="font-size:10px;color:#86868b;padding:4px 10px 2px">キ우 + ア</p>
+<div style="background:#fff;border-bottom:0.5px solid #e5e5ea"><svg viewBox="314 0 356 105" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto;background:#fff">
+<rect x="314" y="0" width="356" height="105" fill="#fff"/>
+<rect x="314" y="0" width="40" height="105" class="aisle"/>
+<text x="708" y="76" class="sl">ク</text>
+<text x="475" y="12" class="sec">← 윗줄 キ (우) →</text>
+<text x="646" y="12" class="sec">벽부스 ア</text>
+<g class="ecap filled" data-k="キ33"><rect x="588" y="18" width="18" height="42" rx="1"/><text x="597" y="35" class="bn">33</text><text x="597" y="47" class="bte">★</text></g>
+<g class="booth-disabled"><rect x="356" y="18" width="27" height="20" rx="1" fill="#f0f0f0" stroke="#e0e0e0" stroke-width="0.5"/><text x="369" y="25" class="bn" fill="#ccc">57</text><text x="369" y="33" class="bt" fill="#ddd">○</text></g>
+<g class="booth-disabled"><rect x="385" y="18" width="27" height="20" rx="1" fill="#f0f0f0" stroke="#e0e0e0" stroke-width="0.5"/><text x="398" y="25" class="bn" fill="#ccc">58</text><text x="398" y="33" class="bt" fill="#ddd">○</text></g>
+<g class="booth-disabled"><rect x="414" y="18" width="27" height="20" rx="1" fill="#f0f0f0" stroke="#e0e0e0" stroke-width="0.5"/><text x="427" y="25" class="bn" fill="#ccc">59</text><text x="427" y="33" class="bt" fill="#ddd">○</text></g>
+<g class="booth-disabled"><rect x="443" y="18" width="27" height="20" rx="1" fill="#f0f0f0" stroke="#e0e0e0" stroke-width="0.5"/><text x="456" y="25" class="bn" fill="#ccc">60</text><text x="456" y="33" class="bt" fill="#ddd">○</text></g>
+<g class="booth-disabled"><rect x="472" y="18" width="27" height="20" rx="1" fill="#f0f0f0" stroke="#e0e0e0" stroke-width="0.5"/><text x="485" y="25" class="bn" fill="#ccc">61</text><text x="485" y="33" class="bt" fill="#ddd">○</text></g>
+<g class="booth-disabled"><rect x="501" y="18" width="27" height="20" rx="1" fill="#f0f0f0" stroke="#e0e0e0" stroke-width="0.5"/><text x="514" y="25" class="bn" fill="#ccc">62</text><text x="514" y="33" class="bt" fill="#ddd">○</text></g>
+<g class="booth-disabled"><rect x="530" y="18" width="27" height="20" rx="1" fill="#f0f0f0" stroke="#e0e0e0" stroke-width="0.5"/><text x="543" y="25" class="bn" fill="#ccc">63</text><text x="543" y="33" class="bt" fill="#ddd">○</text></g>
+<g class="booth-disabled"><rect x="559" y="18" width="27" height="20" rx="1" fill="#f0f0f0" stroke="#e0e0e0" stroke-width="0.5"/><text x="572" y="25" class="bn" fill="#ccc">64</text><text x="572" y="33" class="bt" fill="#ddd">○</text></g>
+<g class="booth filled" data-k="キ41"><rect x="356" y="40" width="27" height="20" rx="1"/><text x="369" y="47" class="bn">41</text><text x="369" y="55" class="btf">★</text></g>
+<g class="booth filled" data-k="キ40"><rect x="385" y="40" width="27" height="20" rx="1"/><text x="398" y="47" class="bn">40</text><text x="398" y="55" class="btf">★</text></g>
+<g class="booth filled" data-k="キ39"><rect x="414" y="40" width="27" height="20" rx="1"/><text x="427" y="47" class="bn">39</text><text x="427" y="55" class="btf">★</text></g>
+<g class="booth filled" data-k="キ38"><rect x="443" y="40" width="27" height="20" rx="1"/><text x="456" y="47" class="bn">38</text><text x="456" y="55" class="btf">★</text></g>
+<g class="booth filled" data-k="キ37"><rect x="472" y="40" width="27" height="20" rx="1"/><text x="485" y="47" class="bn">37</text><text x="485" y="55" class="btf">★</text></g>
+<g class="booth filled" data-k="キ36"><rect x="501" y="40" width="27" height="20" rx="1"/><text x="514" y="47" class="bn">36</text><text x="514" y="55" class="btf">★</text></g>
+<g class="booth filled" data-k="キ35"><rect x="530" y="40" width="27" height="20" rx="1"/><text x="543" y="47" class="bn">35</text><text x="543" y="55" class="btf">★</text></g>
+<g class="booth filled" data-k="キ34"><rect x="559" y="40" width="27" height="20" rx="1"/><text x="572" y="47" class="bn">34</text><text x="572" y="55" class="btf">★</text></g>
+<line x1="628" y1="16" x2="628" y2="90" class="wline"/>
+<g class="wbooth filled" data-k="ア1"><rect x="616" y="18" width="40" height="34" rx="1"/><text x="636" y="31" class="bn">ア1</text><text x="636" y="43" class="btfw">★</text></g>
+</svg></div>
+<p style="font-size:10px;color:#86868b;padding:4px 10px 2px">キ좌</p>
+<div style="background:#fff"><svg viewBox="0 0 315 105" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto;background:#fff">
+<rect x="0" y="0" width="315" height="105" fill="#fff"/>
+<rect x="314" y="0" width="1" height="105" class="aisle"/>
+<text x="12" y="76" class="sl">キ</text>
+<text x="160" y="12" class="sec">← 윗줄 キ (좌) →</text>
+<g class="ecap filled" data-k="キ49"><rect x="30" y="18" width="18" height="42" rx="1"/><text x="39" y="35" class="bn">49</text><text x="39" y="47" class="bte">★</text></g>
+<g class="booth-disabled"><rect x="50" y="18" width="27" height="20" rx="1" fill="#f0f0f0" stroke="#e0e0e0" stroke-width="0.5"/><text x="63" y="25" class="bn" fill="#ccc">50</text><text x="63" y="33" class="bt" fill="#ddd">○</text></g>
+<g class="booth-disabled"><rect x="79" y="18" width="27" height="20" rx="1" fill="#f0f0f0" stroke="#e0e0e0" stroke-width="0.5"/><text x="92" y="25" class="bn" fill="#ccc">51</text><text x="92" y="33" class="bt" fill="#ddd">○</text></g>
+<g class="booth-disabled"><rect x="108" y="18" width="27" height="20" rx="1" fill="#f0f0f0" stroke="#e0e0e0" stroke-width="0.5"/><text x="121" y="25" class="bn" fill="#ccc">52</text><text x="121" y="33" class="bt" fill="#ddd">○</text></g>
+<g class="booth-disabled"><rect x="137" y="18" width="27" height="20" rx="1" fill="#f0f0f0" stroke="#e0e0e0" stroke-width="0.5"/><text x="150" y="25" class="bn" fill="#ccc">53</text><text x="150" y="33" class="bt" fill="#ddd">○</text></g>
+<g class="booth-disabled"><rect x="166" y="18" width="27" height="20" rx="1" fill="#f0f0f0" stroke="#e0e0e0" stroke-width="0.5"/><text x="179" y="25" class="bn" fill="#ccc">54</text><text x="179" y="33" class="bt" fill="#ddd">○</text></g>
+<g class="booth-disabled"><rect x="195" y="18" width="27" height="20" rx="1" fill="#f0f0f0" stroke="#e0e0e0" stroke-width="0.5"/><text x="208" y="25" class="bn" fill="#ccc">55</text><text x="208" y="33" class="bt" fill="#ddd">○</text></g>
+<g class="booth-disabled"><rect x="224" y="18" width="27" height="20" rx="1" fill="#f0f0f0" stroke="#e0e0e0" stroke-width="0.5"/><text x="237" y="25" class="bn" fill="#ccc">56</text><text x="237" y="33" class="bt" fill="#ddd">○</text></g>
+<g class="booth filled" data-k="キ48"><rect x="50" y="40" width="27" height="20" rx="1"/><text x="63" y="47" class="bn">48</text><text x="63" y="55" class="btf">★</text></g>
+<g class="booth filled" data-k="キ47"><rect x="79" y="40" width="27" height="20" rx="1"/><text x="92" y="47" class="bn">47</text><text x="92" y="55" class="btf">★</text></g>
+<g class="booth filled" data-k="キ46"><rect x="108" y="40" width="27" height="20" rx="1"/><text x="121" y="47" class="bn">46</text><text x="121" y="55" class="btf">★</text></g>
+<g class="booth filled" data-k="キ45"><rect x="137" y="40" width="27" height="20" rx="1"/><text x="150" y="47" class="bn">45</text><text x="150" y="55" class="btf">★</text></g>
+<g class="booth filled" data-k="キ44"><rect x="166" y="40" width="27" height="20" rx="1"/><text x="179" y="47" class="bn">44</text><text x="179" y="55" class="btf">★</text></g>
+<g class="booth filled" data-k="キ43"><rect x="195" y="40" width="27" height="20" rx="1"/><text x="208" y="47" class="bn">43</text><text x="208" y="55" class="btf">★</text></g>
+<g class="booth filled" data-k="キ42"><rect x="224" y="40" width="27" height="20" rx="1"/><text x="237" y="47" class="bn">42</text><text x="237" y="55" class="btf">★</text></g>
+</svg></div>
 </div>
 <div class="panel">
-  <div class="ph"><h2>체크한 부스</h2><span class="pcnt" id="pcnt"></span></div>
+  <div class="ph"><h2>📋 체크 목록</h2><span class="pcnt" id="pcnt"></span></div>
   <div class="clist" id="clist"><p class="empty">부스를 탭해서 체크해봐~</p></div>
 </div>
 <div class="tip" id="tip">
@@ -166,9 +166,14 @@ const ACCOUNTS={
 };
 const PRESET={
   'キ49':{name:'棗の実',nickname:'ナチュメ（なつみかん）',account:'@str_ntm',accountUrl:'https://x.com/str_ntm',price:'1000엔',memo:'キ49ab',stamp:true,items:[
-    {label:'모스파이 소설',price:'1000엔',note:'본문160p — キ49a',novel:true},
-    {label:'핑크 포스카 (노벨티)',price:'무료',note:'キ49a',free:true},
-    {label:'미니마그넷 (노벨티)',price:'무료',note:'キ49a',free:true}
+    {label:'「Golden memories」',price:'1000엔',note:'R18/소설/pixiv 전문 공개중 — ナチュメ / キ49a',r18:true,novel:true},
+    {label:'ピンクポスカ (노벨티)',price:'무료',note:'소진시 종료 — キ49a',free:true},
+    {label:'ミニマグネット (노벨티)',price:'무료',note:'소진시 종료 — キ49a',free:true},
+    {label:'ネップリ',price:'간식교환',note:'差し入れ와 교환 / 소진시 종료 — キ49a'},
+    {label:'모스파이 동화 앤솔 전단지 (B5)',price:'무료',note:'TAKE FREE — キ49ab',free:true},
+    {label:'포스트카드 (My Chemical Non-fiction Romance)',price:'무료',note:'TAKE FREE — キ49ab',free:true},
+    {label:'소설 포스트카드',price:'무료',note:'TAKE FREE — キ49ab',free:true},
+    {label:'모스파이 스탬프랠리',price:'무료',note:'take gift / 스탬프랠리 본부 — キ49b',free:true}
   ]},
   'キ48':{name:'いとしき / ツユマチ',nickname:'wanaka / よひら',account:'@wanaka_itosiki / @yohiraori',accountUrl:'',price:'1500~2000엔',memo:'キ48a·b',items:[
     {label:'「ニカドリーの眷属にローションガーゼされるファイノンとモスファイ」',price:'1500엔',note:'300P/글 — wanaka / キ48a',novel:true},
@@ -178,9 +183,10 @@ const PRESET={
     {label:'「たとえ世界が違っても」',price:'700엔',note:'문고본/176P/R18 — あい / キ47a',r18:true,novel:true},
     {label:'あいも 판매물',price:'미정',note:'글회지 — @aimo_335 / キ47b',novel:true}
   ]},
-  'キ46':{name:'私的見解 / 矛盾戯咲',nickname:'守屋 / SAHINA',account:'@SAHINAGentou',accountUrl:'https://x.com/SAHINAGentou',price:'700엔~',memo:'キ46a·b',items:[
+  'キ46':{name:'私的見解 / 矛盾戯咲',nickname:'守屋 / SAHINA',account:'@SAHINAGentou',accountUrl:'https://x.com/SAHINAGentou',price:'700~2000엔',memo:'キ46a·b',items:[
     {label:'「泡沫に溶けだす人魚の恋」외',price:'미정',note:'문고본/148P — 守屋(pixiv) / キ46a',novel:true},
-    {label:'글회지 2종',price:'700엔',note:'문고본/156P — SAHINA / キ46b',novel:true}
+    {label:'「「救世主」のなれのはて」',price:'700엔',note:'문고/전연령/156P/pixiv 3편 개고+신작 1편 — SAHINA / キ46b',novel:true},
+    {label:'「悪役令嬢だが、なにか？」',price:'2000엔',note:'문고/R18/296P/しあ합동지/모디스 여장 이세계전생 — SAHINA / キ46b',r18:true,novel:true}
   ]},
   'キ45':{name:'Lune et toi / Good evening',nickname:'p / ましま',account:'',accountUrl:'',price:'미정',memo:'キ45a·b',items:[
     {label:'p 판매물',price:'미정',note:'인포 미공개 / Lune et toi / キ45a'},
@@ -201,7 +207,11 @@ const PRESET={
   ]},
   'キ42':{name:'toY＊Box / おやすみ',nickname:'ゆの / りー',account:'@yuyuyu_str / @8f9de4',accountUrl:'',price:'미정',memo:'キ42a·b',items:[
     {label:'ゆの 판매물',price:'미정',note:'인포 미공개 / キ42a'},
-    {label:'「まだ名前のないままで」',price:'미정',note:'R18/만화 — りー / キ42b',r18:true,manga:true}
+    {label:'「まだ名前のないままで」',price:'500엔',note:'A5/32P/R18/만화/유소시절 모스파이/학파로 — りー / キ42b',r18:true,manga:true},
+    {label:'偏光オーロラシールセット (노벨티)',price:'무료',note:'「まだ名前のないままで」구매 시 — キ42b',free:true},
+    {label:'「おにしょたのモスファイ」',price:'500엔',note:'A5/38P/전연령/만화 — りー / キ42b',manga:true},
+    {label:'モスファイアクリルミニブロックセット',price:'1600엔',note:'약6cm/두께1cm/자립 아크스타/테두리 거의 없음 — りー / キ42b'},
+    {label:'ファイノンラメアクキー',price:'1300엔',note:'氷雪아크릴/양면인쇄/박押し — りー / キ42b'}
   ]},
   'キ41':{name:'ゆうやけの庭 / にっちもさっちも',nickname:'ひさた / うらしま',account:'@sa8_ta / @urashima_hy',accountUrl:'',price:'300~400엔',memo:'キ41a·b',items:[
     {label:'신간 「よっぱらいにちゅうい！」',price:'400엔',note:'A5/R18/24P/만화 — ひさた / キ41a',r18:true,manga:true},
@@ -257,7 +267,8 @@ const PRESET={
   ]},
   'ア1':{name:'mpc / ZERO生',nickname:'ﾒﾋﾟ / 三助',account:'@ham_mmx / @sansuke801',accountUrl:'',price:'500~700엔',memo:'ア01a·b',items:[
     {label:'「中に出してよ」',price:'500엔',note:'A5/34P/R18/만화 — ﾒﾋﾟ(@ham_mmx) / ア01a',r18:true,manga:true},
-    {label:'「初エッチ前に頑張りすぎてやらかすノン」',price:'700엔',note:'B5/54P/R18/만화 — 三助(@sansuke801) / ア01b',r18:true,manga:true}
+    {label:'「初エッチ前に頑張りすぎてやらかすノン」',price:'700엔',note:'B5/54P/R18/만화 — 三助(@sansuke801) / ア01b',r18:true,manga:true},
+    {label:'「メイドちゃんアクリルスタンド」(모디스+파이논 세트)',price:'1500엔',note:'60mm×60mm/본체2+대좌2/2종 세트 판매만 — 三助(@sansuke801) / ア01b'}
   ]}
 };
 const bdata={};
@@ -267,21 +278,34 @@ function getType(k){
   if(k==='キ49'||k==='キ33') return 'end';
   return 'ki';
 }
+let lastSelected=null;
 document.querySelectorAll('.booth,.ecap,.wbooth').forEach(el=>{
   const k=el.dataset.k;
   if(PRESET[k]) bdata[k]={...PRESET[k]};
   else if(!bdata[k]) bdata[k]={name:'(미입력)',nickname:'',account:'',accountUrl:'',price:'',memo:'',items:[]};
   if(checked.has(k)) el.classList.add('on');
   el.addEventListener('click',()=>{
-    if(checked.has(k)) checked.delete(k); else checked.add(k);
+    if(lastSelected&&lastSelected!==k){
+      checked.delete(lastSelected);
+      document.querySelectorAll(`[data-k="${lastSelected}"]`).forEach(e=>e.classList.remove('on'));
+    }
+    if(lastSelected===k){
+      checked.delete(k);
+      el.classList.remove('on');
+      lastSelected=null;
+      renderList();
+      return;
+    }
+    checked.add(k);
+    el.classList.add('on');
+    lastSelected=k;
     localStorage.setItem('checked',JSON.stringify([...checked]));
-    el.classList.toggle('on',checked.has(k));
     renderList();
     const d=bdata[k];
     const tip=document.getElementById('tip');
     document.getElementById('tn').textContent=k+(d.memo&&d.memo!==k?' ('+d.memo+')':'');
     document.getElementById('tnm').textContent=d.nickname||d.name;
-    document.getElementById('th').textContent=checked.has(k)?'✓ 체크됨':'탭으로 체크';
+    document.getElementById('th').textContent='✓ 선택됨';
     tip.style.display='block';
     tip.style.left='50%';tip.style.transform='translateX(-50%)';tip.style.top='80px';
     setTimeout(()=>{tip.style.display='none';tip.style.transform='';},1600);
@@ -303,7 +327,7 @@ function makeAcctHtml(k,d){
   const m=ACCOUNTS[k];
   if(m){let h='';for(let i=0;i<m.length;i+=2)h+=`<a class="ci-acct" href="${m[i]}">${m[i+1]}</a>`;return h;}
   if(k==='キ48') return `<a class="ci-acct" href="https://x.com/wanaka_itosiki">@wanaka_itosiki</a><a class="ci-acct" href="https://x.com/yohiraori">@yohiraori</a>`;
-  if(k==='キ46') return `<a class="ci-acct" href="https://x.com/SAHINAGentou">@SAHINAGentou</a><a class="ci-acct" href="https://www.pixiv.net/users/6813000">pixiv(守屋)</a>`;
+  if(k==='キ46') return `<a class="ci-acct" href="https://www.pixiv.net/users/6813000">pixiv(守屋)</a><a class="ci-acct" href="https://x.com/SAHINAGentou">@SAHINAGentou</a>`;
   if(k==='キ34') return `<a class="ci-acct" href="https://x.com/ari_eos">@ari_eos</a><a class="ci-acct" href="https://x.com/AoiAkira0705">@AoiAkira0705</a><a class="ci-acct" href="https://x.com/okanon496">@okanon496</a>`;
   if(d.accountUrl) return `<a class="ci-acct" href="${d.accountUrl}">${d.account}</a>`;
   if(d.account) return `<span class="ci-acct">${d.account}</span>`;
